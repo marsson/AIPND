@@ -28,8 +28,18 @@ from classifier import classifier
 #       Notice that this function doesn't return anything because the 
 #       results_dic dictionary that is passed into the function is a mutable 
 #       data type so no return is needed.
-# 
+#
 def classify_images(images_dir, results_dic, model):
+
+
+    for key in results_dic.keys():
+        resultList = list()
+        image_classification = classifier(images_dir+key, model)
+        resultList.append(results_dic.get(key).lstrip().lower())
+        resultList.append(image_classification.lstrip().lower())
+        resultList.append(0)
+        results_dic[key] = resultList
+
     """
     Creates classifier labels with classifier function, compares pet labels to 
     the classifier labels, and adds the classifier label and the comparison of 
@@ -65,4 +75,4 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.         
     """
-    None 
+

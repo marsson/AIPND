@@ -66,5 +66,17 @@ def adjust_results4_isadog(results_dic, dogfile):
                maltese) (string - indicates text file's filename)
     Returns:
            None - results_dic is mutable data type so no return needed.
-    """           
-    None
+    """
+
+    dognames = set(line.strip() for line in open(dogfile))
+    for result in results_dic.values():
+
+        classifier_list = [line.strip() for line in result[1].split(",")]
+        result[2] = 1 if result[0] in classifier_list else 0
+        new_itens = list()
+        item_1 = 1 if result[0] in dognames else 0
+
+        item_2 = 1 if any(set(classifier_list) & dognames) else 0
+        new_itens.append(item_1)
+        new_itens.append(item_2)
+        result.extend(new_itens)

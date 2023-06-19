@@ -44,12 +44,15 @@ def get_pet_labels(image_dir):
     # function
     results_dic = {}
     filename_list = listdir(image_dir)
-    for filename in filename_list:
+    for filename in (filename for filename in filename_list if filename[0] != "."):
         no_number_name = ""
         for split in filename.split("_"):
             if split.isalpha():
                 no_number_name = no_number_name + " " + split.strip()
             else:
                 continue
-        results_dic[filename] = no_number_name.lower().lstrip()
+        item = list()
+        item.append(no_number_name.lower().lstrip())
+        results_dic[filename] = item
+
     return results_dic

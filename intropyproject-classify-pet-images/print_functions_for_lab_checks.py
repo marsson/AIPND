@@ -194,7 +194,6 @@ def check_classifying_labels_as_dogs(results_dic):
         
             # Prints only if NOT-a-Match Index 2 == 0 
             if results_dic[key][2] == 0:
- 
                 # Increments Not-a-Match counter
                 n_notmatch += 1
                 print("\n{:>30}: \nReal: {:>26}   Classifier: {:>30}  \nPetLabelDog: {:1d}  ClassLabelDog: {:1d}".format(key,
